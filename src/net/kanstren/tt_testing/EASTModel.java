@@ -1,5 +1,6 @@
 package net.kanstren.tt_testing;
 
+import osmo.common.Randomizer;
 import osmo.tester.annotation.AfterTest;
 import osmo.tester.annotation.Guard;
 import osmo.tester.annotation.TestStep;
@@ -18,6 +19,7 @@ import java.util.List;
 public class EASTModel {
   private final ModelState state;
   private TestSuite suite;
+  private Randomizer rand = new Randomizer();
 
   public EASTModel(ModelState state) {
     this.state = state;
@@ -94,6 +96,108 @@ public class EASTModel {
     dfp.setDescription("Description" + dfp.getId());
   }
 
+  @Guard("CreateFlowLink")
+  public boolean hasFlowPair() {
+    return findFlowPair() != null;
+  }
+
+  @Guard("CreatePowerLink")
+  public boolean hasPowerPair() {
+    return findPowerPair() != null;
+  }
+
+  @Guard("CreateClientServerLink")
+  public boolean hasClientServerPair() {
+    return findClientServerPair() != null;
+  }
+
+  private Tuple<DFP, DFP> findFlowPair() {
+    ValueSet<DFP> dfps = state.getDFPs();
+    ValueSet<DFP> inFlows = new ValueSet<>();
+    inFlows.setSeed(rand.nextLong());
+    ValueSet<DFP> outFlows = new ValueSet<>();
+    outFlows.setSeed(rand.nextLong());
+    for (DFP dfp : dfps.getOptions()) {
+      if (dfp.getInFlows().size() > 0) {
+        inFlows.add(dfp);
+      }
+      if (dfp.getOutFlows().size() > 0) {
+        outFlows.add(dfp);
+      }
+    }
+    if (inFlows.size() == 0 || outFlows.size() == 0) return null;
+    return getUniquePair(inFlows, outFlows);
+  }
+
+  private Tuple<DFP, DFP> findPowerPair() {
+    ValueSet<DFP> dfps = state.getDFPs();
+    ValueSet<DFP> inPowers = new ValueSet<>();
+    inPowers.setSeed(rand.nextLong());
+    ValueSet<DFP> outPowers = new ValueSet<>();
+    outPowers.setSeed(rand.nextLong());
+    for (DFP dfp : dfps.getOptions()) {
+      if (dfp.getInPowers().size() > 0) {
+        inPowers.add(dfp);
+      }
+      if (dfp.getOutPowers().size() > 0) {
+        outPowers.add(dfp);
+      }
+    }
+    if (inPowers.size() == 0 || outPowers.size() == 0) return null;
+    return getUniquePair(inPowers, outPowers);
+  }
+
+  private Tuple<DFP, DFP> findClientServerPair() {
+    ValueSet<DFP> dfps = state.getDFPs();
+    ValueSet<DFP> clients = new ValueSet<>();
+    clients.setSeed(rand.nextLong());
+    ValueSet<DFP> servers = new ValueSet<>();
+    servers.setSeed(rand.nextLong());
+    for (DFP dfp : dfps.getOptions()) {
+      if (dfp.getClients().size() > 0) {
+        clients.add(dfp);
+      }
+      if (dfp.getServers().size() > 0) {
+        servers.add(dfp);
+      }
+    }
+    if (clients.size() == 0 || servers.size() == 0) return null;
+    return getUniquePair(clients, servers);
+  }
+
+  private Tuple<DFP, DFP> getUniquePair(ValueSet<DFP> set1, ValueSet<DFP> set2) {
+    if (set1.getOptions().equals(set2.getOptions())) return null;
+    DFP dfp1 = null;
+    DFP dfp2 = null;
+    while (dfp1 == null || dfp2 == null) {
+      dfp1 = set1.random();
+      dfp2 = set2.random();
+      if (dfp1.equals(dfp2)) {
+        dfp1 = null;
+        dfp2 = null;
+      }
+    }
+    return new Tuple<>(dfp1, dfp2);
+  }
+
+  @TestStep
+  public void createFlowLink() {
+    Tuple<DFP, DFP> pair = findFlowPair();
+    pair.getValue1().connectFlowTo(pair.getValue2());
+  }
+
+  @TestStep
+  public void createPowerLink() {
+    Tuple<DFP, DFP> pair = findPowerPair();
+    pair.getValue1().connectPowerTo(pair.getValue2());
+  }
+
+  @TestStep
+  public void createClientServerLink() {
+    Tuple<DFP, DFP> pair = findClientServerPair();
+    pair.getValue1().connectClientServer(pair.getValue2());
+  }
+
   @AfterTest
   public void theEnd() {
     TestCase test = suite.getCurrentTest();
@@ -103,8 +207,9 @@ public class EASTModel {
 
   private void createCoverage(TestCase test) {
     TestCoverage coverage = test.getCoverage();
-    coverage.addVariableValue("DFP", value012NFor(state.dfpCount()));
-    coverage.addVariableValue("DFT", value012NFor(state.dfpCount()));
+    String dfpCat = value012NFor(state.dfpCount());
+    coverage.addVariableValue("DFP", dfpCat);
+    coverage.addVariableValue("DFT", value012NFor(state.dftCount()));
 
     List<DFT> dfts = state.getDFTs().getOptions();
     for (DFT dft : dfts) {
@@ -119,12 +224,49 @@ public class EASTModel {
       int dfp1OutPowers = dfp1.getOutPowers().size();
       int dfp1Clients = dfp1.getClients().size();
       int dfp1Servers = dfp1.getServers().size();
-      coverage.addVariableValue("DFP-InFlow", "" + value01NFor(dfp1InFlows));
-      coverage.addVariableValue("DFP-OutFlow", "" + value01NFor(dfp1OutFlows));
-      coverage.addVariableValue("DFP-InPower", "" + value01NFor(dfp1InPowers));
-      coverage.addVariableValue("DFP-OutPower", "" + value01NFor(dfp1OutPowers));
-      coverage.addVariableValue("DFP-Client", "" + value01NFor(dfp1Clients));
-      coverage.addVariableValue("DFP-Server", "" + value01NFor(dfp1Servers));
+
+      String dfp1InFlowCat = value01NFor(dfp1InFlows);
+      String dfp1OutFlowCat = value01NFor(dfp1OutFlows);
+      String dfp1InPowerCat = value01NFor(dfp1InPowers);
+      String dfp1OutPowerCat = value01NFor(dfp1OutPowers);
+      String dfp1ClientCat = value01NFor(dfp1Clients);
+      String dfp1ServerCat = value01NFor(dfp1Servers);
+      coverage.addVariableValue("DFP-InFlow", "" + dfp1InFlowCat);
+      coverage.addVariableValue("DFP-OutFlow", "" + dfp1OutFlowCat);
+      coverage.addVariableValue("DFP-InPower", "" + dfp1InPowerCat);
+      coverage.addVariableValue("DFP-OutPower", "" + dfp1OutPowerCat);
+      coverage.addVariableValue("DFP-Client", "" + dfp1ClientCat);
+      coverage.addVariableValue("DFP-Server", "" + dfp1ServerCat);
+
+      coverage.addVariableValue("DFPs+InFlow", dfpCat + "+" + dfp1InFlowCat);
+      coverage.addVariableValue("DFPs+OutFlow", dfpCat + "+" + dfp1OutFlowCat);
+      coverage.addVariableValue("DFPs+InPower", dfpCat + "+" + dfp1InPowerCat);
+      coverage.addVariableValue("DFPs+OutPower", dfpCat + "+" + dfp1OutPowerCat);
+      coverage.addVariableValue("DFPs+Server", dfpCat + "+" + dfp1ServerCat);
+      coverage.addVariableValue("DFPs+Client", dfpCat + "+" + dfp1ClientCat);
+
+      for (Port p : dfp1.getInFlows().getOptions()) {
+        String cat = value01NFor(p.getPairs().size());
+        coverage.addVariableValue("Flow-Lines", cat);
+        coverage.addVariableValue("DFPs+Flow-Lines", dfpCat+"+"+cat);
+        coverage.addVariableValue("DFPs+InFlowPorts+Flow-Lines", dfpCat+""+dfp1InFlowCat+"+"+cat);
+        coverage.addVariableValue("DFPs+OutFlowPorts+Flow-Lines", dfpCat+""+dfp1OutFlowCat+"+"+cat);
+      }
+      for (Port p : dfp1.getInPowers().getOptions()) {
+        String cat = value01NFor(p.getPairs().size());
+        coverage.addVariableValue("Power-Lines", cat);
+        coverage.addVariableValue("DFPs+Power-Lines", dfpCat+"+"+cat);
+        coverage.addVariableValue("DFPs+InPowerPorts+Power-Lines", dfpCat+""+dfp1InPowerCat+"+"+cat);
+        coverage.addVariableValue("DFPs+OutPowerPorts+Power-Lines", dfpCat+""+dfp1OutPowerCat+"+"+cat);
+      }
+      for (Port p : dfp1.getServers().getOptions()) {
+        String cat = value01NFor(p.getPairs().size());
+        coverage.addVariableValue("Server-Lines", cat);
+        coverage.addVariableValue("DFPs+Server-Lines", dfpCat+"+"+cat);
+        coverage.addVariableValue("DFPs+ServerPorts+Server-Lines", dfpCat+""+dfp1ServerCat+"+"+cat);
+        coverage.addVariableValue("DFPs+ClientPorts+Server-Lines", dfpCat+""+dfp1ClientCat+"+"+cat);
+      }
+
       for (DFP dfp2 : dfps) {
         if (dfp1.getId() == dfp2.getId()) continue;
 

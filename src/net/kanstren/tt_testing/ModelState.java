@@ -30,7 +30,7 @@ public class ModelState {
   }
 
   public void createDFP() {
-    dfps.add(new DFP(dfps.size() + 1));
+    dfps.add(new DFP(dfps.size() + 1, rand.nextLong()));
   }
 
   public void createDFT() {

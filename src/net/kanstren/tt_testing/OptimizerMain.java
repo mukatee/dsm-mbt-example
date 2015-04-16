@@ -34,6 +34,7 @@ public class OptimizerMain {
     int timeout = Integer.parseInt(args[1]);
     MultiGreedy greedy = new MultiGreedy(oc, config, seed);
     greedy.setTimeout(timeout);
+    greedy.setPopulationSize(10000);
     List<TestCase> tests = greedy.search();
 
     Scripter scripter = new Scripter();
