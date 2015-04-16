@@ -1,0 +1,54 @@
+<project name="tt-testing" default="jar" basedir=".">
+  <property environment="env"/>
+  <property name="prod-src" value="src"/>
+  <property name="test-src" value="test"/>
+  <property name="main-output" value="ant-out"/>
+  <property name="prod-dest" value="${main-output}/production"/>
+  <property name="test-dest" value="${main-output}/testing"/>
+  <property name="test-report" value="${main-output}/junit-report"/>
+  <property name="build.version" value="0.0.1"/>
+  <property name="jar.file" value="tt-testing-v${build.version}.jar"/>
+
+  <path id="class.path">
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+    </fileset>
+    <path location="${prod-dest}"/>
+  </path>
+
+  <target name="clean">
+    <echo message="Removing old directory structure..."/>
+    <delete dir="${main-output}"/>
+    <echo message="Removing jar file:${jar.file}"/>
+    <delete file="${jar.file}"/>
+  </target>
+
+  <target name="init">
+    <mkdir dir="${prod-dest}"/>
+    <mkdir dir="${test-dest}"/>
+    <mkdir dir="${test-report}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <echo message="Compiling production..."/>
+    <javac source="8" target="8" debug="true" classpathref="class.path" srcdir="${prod-src}" destdir="${prod-dest}"/>
+  </target>
+
+  <target name="jar" depends="clean,compile,copyresources" description="Create jar file">
+    <jar destfile="${jar.file}">
+      <fileset dir="${prod-dest}"/>
+    </jar>
+  </target>
+
+  <target name="copyresources" depends="init,compile">
+    <copy todir="${prod-dest}">
+      <fileset dir="${prod-src}">
+        <include name="**/*.html"/>
+        <include name="**/*.txt"/>
+        <include name="**/*.csv"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.vm"/>
+      </fileset>
+    </copy>
+  </target>
+</project>
