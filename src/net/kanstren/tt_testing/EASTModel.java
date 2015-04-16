@@ -249,22 +249,22 @@ public class EASTModel {
         String cat = value01NFor(p.getPairs().size());
         coverage.addVariableValue("Flow-Lines", cat);
         coverage.addVariableValue("DFPs+Flow-Lines", dfpCat+"+"+cat);
-        coverage.addVariableValue("DFPs+InFlowPorts+Flow-Lines", dfpCat+""+dfp1InFlowCat+"+"+cat);
-        coverage.addVariableValue("DFPs+OutFlowPorts+Flow-Lines", dfpCat+""+dfp1OutFlowCat+"+"+cat);
+        coverage.addVariableValue("DFPs+InFlowPorts+Flow-Lines", dfpCat+"+"+dfp1InFlowCat+"+"+cat);
+        coverage.addVariableValue("DFPs+OutFlowPorts+Flow-Lines", dfpCat+"+"+dfp1OutFlowCat+"+"+cat);
       }
       for (Port p : dfp1.getInPowers().getOptions()) {
         String cat = value01NFor(p.getPairs().size());
         coverage.addVariableValue("Power-Lines", cat);
         coverage.addVariableValue("DFPs+Power-Lines", dfpCat+"+"+cat);
-        coverage.addVariableValue("DFPs+InPowerPorts+Power-Lines", dfpCat+""+dfp1InPowerCat+"+"+cat);
-        coverage.addVariableValue("DFPs+OutPowerPorts+Power-Lines", dfpCat+""+dfp1OutPowerCat+"+"+cat);
+        coverage.addVariableValue("DFPs+InPowerPorts+Power-Lines", dfpCat+"+"+dfp1InPowerCat+"+"+cat);
+        coverage.addVariableValue("DFPs+OutPowerPorts+Power-Lines", dfpCat+"+"+dfp1OutPowerCat+"+"+cat);
       }
       for (Port p : dfp1.getServers().getOptions()) {
         String cat = value01NFor(p.getPairs().size());
         coverage.addVariableValue("Server-Lines", cat);
         coverage.addVariableValue("DFPs+Server-Lines", dfpCat+"+"+cat);
-        coverage.addVariableValue("DFPs+ServerPorts+Server-Lines", dfpCat+""+dfp1ServerCat+"+"+cat);
-        coverage.addVariableValue("DFPs+ClientPorts+Server-Lines", dfpCat+""+dfp1ClientCat+"+"+cat);
+        coverage.addVariableValue("DFPs+ServerPorts+Server-Lines", dfpCat+"+"+dfp1ServerCat+"+"+cat);
+        coverage.addVariableValue("DFPs+ClientPorts+Server-Lines", dfpCat+"+"+dfp1ClientCat+"+"+cat);
       }
 
       for (DFP dfp2 : dfps) {
