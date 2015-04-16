@@ -33,4 +33,48 @@ public class Scripter {
     velocity.mergeTemplate("json-input.vm", "UTF8", vc, sw);
     TestUtils.write(sw.toString(), file);
   }
+
+  public void writeChecks(ModelState state, String file) {
+    String checks = "";
+    checks += "blocks = "+state.dfpCount()+"\n";
+    checks += "types = "+state.dftCount()+"\n";
+    checks += "all SID unique"+"\n";
+    List<DFT> dfts = state.getDFTs().getOptions();
+    for (DFT dft : dfts) {
+      checks += "type"+dft.getId()+".name = "+dft.getName()+"\n";
+    }
+
+    List<DFP> dfps = state.getDFPs().getOptions();
+    for (DFP dfp : dfps) {
+      checks += "block"+dfp.getId()+".name = "+dfp.getName()+"\n";
+      int inPorts = dfp.getServers().size();
+      inPorts += dfp.getInFlows().size();
+      inPorts += dfp.getInPowers().size();
+      int outPorts = dfp.getOutFlows().size();
+      outPorts += dfp.getOutPowers().size();
+      outPorts += dfp.getClients().size();
+      checks += "block"+dfp.getId()+".inport_count = "+inPorts+"\n";
+      checks += "block"+dfp.getId()+".outport_count = "+outPorts+"\n";
+      if (dfp.getDescription() == null) {
+        checks += "!block"+dfp.getId()+".description\n";
+      } else {
+        checks += "block"+dfp.getId()+".description = "+dfp.getDescription()+"\n";
+      }
+      createPortChecks(dfp, dfp.getInFlows().getOptions(), "in");
+      createPortChecks(dfp, dfp.getInPowers().getOptions(), "in");
+      createPortChecks(dfp, dfp.getServers().getOptions(), "in");
+      createPortChecks(dfp, dfp.getOutFlows().getOptions(), "out");
+      createPortChecks(dfp, dfp.getOutPowers().getOptions(), "out");
+      createPortChecks(dfp, dfp.getClients().getOptions(), "out");
+    }
+    TestUtils.write(checks, file);
+  }
+
+  private String createPortChecks(DFP dfp, List<Port> ports, String type) {
+    String checks = "";
+    for (Port port : ports) {
+      checks += "block"+dfp.getId()+"."+type+"ports.has = "+port.getName()+"\n";
+    }
+    return checks;
+  }
 }

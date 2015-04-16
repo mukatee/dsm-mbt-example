@@ -98,7 +98,10 @@ public class EASTModel {
   public void theEnd() {
     TestCase test = suite.getCurrentTest();
     test.setAttribute("state", state);
+    createCoverage(test);
+  }
 
+  private void createCoverage(TestCase test) {
     TestCoverage coverage = test.getCoverage();
     coverage.addVariableValue("DFP", value012NFor(state.dfpCount()));
     coverage.addVariableValue("DFT", value012NFor(state.dfpCount()));
