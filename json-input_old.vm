@@ -3,54 +3,6 @@
   DFT {
     Name: $dft.name,
     Id: $dft.id,
-    InFlows: {
-#foreach ($p in $dft.inFlows.options)
-      InFlow: {
-        Name: $p.name,
-        Id: $p.id,
-      }
-#end
-    }
-    OutFlows: {
-#foreach ($p in $dft.outFlows.options)
-      OutFlow: {
-        Name: $p.name,
-        Id: $p.id,
-      }
-#end
-    }
-    InPowers: {
-#foreach ($p in $dft.inPowers.options)
-      InPower: {
-        Name: $p.name,
-        Id: $p.id,
-      }
-#end
-    }
-    OutPowers: {
-#foreach ($p in $dft.outPowers.options)
-      OutPower: {
-        Name: $p.name,
-        Id: $p.id,
-      }
-#end
-    }
-    Client: {
-#foreach ($p in $dft.clients.options)
-      Client: {
-        Name: $p.name,
-        Id: $p.id,
-      }
-#end
-    }
-    Server: {
-#foreach ($p in $dft.servers.options)
-      Server: {
-        Name: $p.name,
-        Id: $p.id,
-      }
-#end
-    }
   }
 #end
 #foreach ($dfp in $dfps)
@@ -60,6 +12,54 @@
     Name: $dfp.name,
 #if ($dfp.description)    Description: $dfp.description,
 #end
+    InFlows: {
+#foreach ($p in $dfp.inFlows.options)
+      InFlow: {
+        Name: $p.name,
+        Id: $p.id,
+      }
+#end
+    }
+    OutFlows: {
+#foreach ($p in $dfp.outFlows.options)
+      OutFlow: {
+        Name: $p.name,
+        Id: $p.id,
+      }
+#end
+    }
+    InPowers: {
+#foreach ($p in $dfp.inPowers.options)
+      InPower: {
+        Name: $p.name,
+        Id: $p.id,
+      }
+#end
+    }
+    OutPowers: {
+#foreach ($p in $dfp.outPowers.options)
+      OutPower: {
+        Name: $p.name,
+        Id: $p.id,
+      }
+#end
+    }
+    Client: {
+#foreach ($p in $dfp.clients.options)
+      Client: {
+        Name: $p.name,
+        Id: $p.id,
+      }
+#end
+    }
+    Server: {
+#foreach ($p in $dfp.server.options)
+      Server: {
+        Name: $p.name,
+        Id: $p.id,
+      }
+#end
+    }
   }
 #end
   Connections: {
@@ -67,9 +67,9 @@
 #foreach ($p in $dfp.inPowers.options)
 #foreach ($pair in $p.pairs)
     Connection: {
-        Source DFP: $dfp.name ($dfp.id),
+        Source DFT: $dfp.name ($dfp.id),
         Source Port: $p.name ($p.id),
-        Destination DFP: $pair.dfp.name ($pair.dfp.id),
+        Destination DFT: $pair.dfp.name ($pair.dfp.id),
         Destination Port: $pair.name ($pair.id),
     }
 #end
@@ -77,9 +77,9 @@
 #foreach ($p in $dfp.inFlows.options)
 #foreach ($pair in $p.pairs)
     Connection: {
-        Source DFP: $dfp.name ($dfp.id),
+        Source DFT: $dfp.name ($dfp.id),
         Source Port: $p.name ($p.id),
-        Destination DFP: $pair.dfp.name ($pair.dfp.id),
+        Destination DFT: $pair.dfp.name ($pair.dfp.id),
         Destination Port: $pair.name ($pair.id),
     }
 #end
@@ -87,9 +87,9 @@
 #foreach ($p in $dfp.servers.options)
 #foreach ($pair in $p.pairs)
     Connection: {
-        Source DFP: $dfp.name ($dfp.id),
+        Source DFT: $dfp.name ($dfp.id),
         Source Port: $p.name ($p.id),
-        Destination DFP: $pair.dfp.name ($pair.dfp.id),
+        Destination DFT: $pair.dfp.name ($pair.dfp.id),
         Destination Port: $pair.name ($pair.id),
     }
 #end

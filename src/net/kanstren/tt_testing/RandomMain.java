@@ -30,6 +30,7 @@ public class RandomMain {
       ModelState state = (ModelState) test.getAttribute("state");
       scripter.writeScript(state, "scripts/test" + testId + ".txt");
       scripter.writeChecks(state, "scripts/checks"+testId+".txt");
+      scripter.writeTrace(test, "scripts/trace"+testId+".txt");
       testId++;
     }
     HTMLCoverageReporter html = new HTMLCoverageReporter(suite.getCoverage(), suite.getAllTestCases(), tester.getFsm());

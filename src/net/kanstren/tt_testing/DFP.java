@@ -6,15 +6,15 @@ import osmo.tester.model.data.ValueSet;
  * @author Teemu Kanstren.
  */
 public class DFP {
-  private ValueSet<Port> inFlows = new ValueSet<>();
-  private ValueSet<Port> outFlows = new ValueSet<>();
-  private ValueSet<Port> inPowers = new ValueSet<>();
-  private ValueSet<Port> outPowers = new ValueSet<>();
-  private ValueSet<Port> clients = new ValueSet<>();
-  private ValueSet<Port> servers = new ValueSet<>();
   private final int id;
   private String description = null;
   private DFT dft = null;
+  private ValueSet<DFPPort> inFlows = new ValueSet<>();
+  private ValueSet<DFPPort> outFlows = new ValueSet<>();
+  private ValueSet<DFPPort> inPowers = new ValueSet<>();
+  private ValueSet<DFPPort> outPowers = new ValueSet<>();
+  private ValueSet<DFPPort> clients = new ValueSet<>();
+  private ValueSet<DFPPort> servers = new ValueSet<>();
 
   public DFP(int id, long seed) {
     this.id = id;
@@ -34,36 +34,6 @@ public class DFP {
     return "DFP" + id;
   }
 
-  public void addInFlow() {
-    int id = inFlows.size() + 1;
-    inFlows.add(new Port(this, "InFlow" + id, id));
-  }
-
-  public void addOutFlow() {
-    int id = outFlows.size() + 1;
-    outFlows.add(new Port(this, "OutFlow" + id, id));
-  }
-
-  public void addInPower() {
-    int id = inPowers.size() + 1;
-    inPowers.add(new Port(this, "InPower" + id, id));
-  }
-
-  public void addOutPower() {
-    int id = outPowers.size() + 1;
-    outPowers.add(new Port(this, "OutPower" + id, id));
-  }
-
-  public void addClient() {
-    int id = clients.size() + 1;
-    clients.add(new Port(this, "Client" + id, id));
-  }
-
-  public void addServer() {
-    int id = servers.size() + 1;
-    servers.add(new Port(this, "Server" + id, id));
-  }
-
   public String getDescription() {
     return description;
   }
@@ -72,27 +42,27 @@ public class DFP {
     this.description = description;
   }
 
-  public ValueSet<Port> getInFlows() {
+  public ValueSet<DFPPort> getInFlows() {
     return inFlows;
   }
 
-  public ValueSet<Port> getOutFlows() {
+  public ValueSet<DFPPort> getOutFlows() {
     return outFlows;
   }
 
-  public ValueSet<Port> getInPowers() {
+  public ValueSet<DFPPort> getInPowers() {
     return inPowers;
   }
 
-  public ValueSet<Port> getOutPowers() {
+  public ValueSet<DFPPort> getOutPowers() {
     return outPowers;
   }
 
-  public ValueSet<Port> getClients() {
+  public ValueSet<DFPPort> getClients() {
     return clients;
   }
 
-  public ValueSet<Port> getServers() {
+  public ValueSet<DFPPort> getServers() {
     return servers;
   }
 
@@ -100,8 +70,26 @@ public class DFP {
     return dft;
   }
 
-  public void setDft(DFT dft) {
+  public void setDFT(DFT dft) {
     this.dft = dft;
+    for (DFTPort port : dft.getInFlows().getOptions()) {
+      addInFlow(port);
+    }
+    for (DFTPort port : dft.getOutFlows().getOptions()) {
+      addOutFlow(port);
+    }
+    for (DFTPort port : dft.getInPowers().getOptions()) {
+      addInPower(port);
+    }
+    for (DFTPort port : dft.getOutPowers().getOptions()) {
+      addOutPower(port);
+    }
+    for (DFTPort port : dft.getServers().getOptions()) {
+      addServer(port);
+    }
+    for (DFTPort port : dft.getClients().getOptions()) {
+      addClient(port);
+    }
   }
 
   public void connectFlowTo(DFP target) {
@@ -116,9 +104,9 @@ public class DFP {
     connectPorts(clients, target.getServers());
   }
 
-  public void connectPorts(ValueSet<Port> sources, ValueSet<Port> targets) {
-    Port source = null;
-    Port target = null;
+  public void connectPorts(ValueSet<DFPPort> sources, ValueSet<DFPPort> targets) {
+    DFPPort source = null;
+    DFPPort target = null;
     while (sources.available() > 0 && targets.available() > 0) {
       source = sources.reserve();
       if (source.getPairs().containsAll(targets.getOptions())) {
@@ -126,7 +114,7 @@ public class DFP {
         continue;
       }
 
-      for (Port port : source.getPairs()) {
+      for (DFPPort port : source.getPairs()) {
         if (targets.getOptions().contains(port)) {
           targets.reserve(port);
         }
@@ -143,6 +131,30 @@ public class DFP {
     }
     if (source == null) return;
     source.addPair(target);
-    target.addPair(target);
+    target.addPair(source);
+  }
+
+  public void addInFlow(DFTPort port) {
+    inFlows.add(new DFPPort(port, this));
+  }
+
+  public void addOutFlow(DFTPort port) {
+    outFlows.add(new DFPPort(port, this));
+  }
+
+  public void addInPower(DFTPort port) {
+    inPowers.add(new DFPPort(port, this));
+  }
+
+  public void addOutPower(DFTPort port) {
+    outPowers.add(new DFPPort(port, this));
+  }
+
+  public void addServer(DFTPort port) {
+    servers.add(new DFPPort(port, this));
+  }
+
+  public void addClient(DFTPort port) {
+    clients.add(new DFPPort(port, this));
   }
 }

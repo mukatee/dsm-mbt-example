@@ -34,7 +34,7 @@ public class ModelState {
   }
 
   public void createDFT() {
-    dfts.add(new DFT(dfts.size() + 1));
+    dfts.add(new DFT(dfts.size() + 1, rand.nextLong()));
   }
 
   public ValueSet<DFP> getDFPs() {

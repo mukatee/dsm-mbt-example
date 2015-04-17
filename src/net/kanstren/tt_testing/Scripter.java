@@ -3,6 +3,7 @@ package net.kanstren.tt_testing;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import osmo.common.TestUtils;
+import osmo.tester.generator.testsuite.TestCase;
 
 import java.io.StringWriter;
 import java.util.List;
@@ -70,11 +71,20 @@ public class Scripter {
     TestUtils.write(checks, file);
   }
 
-  private String createPortChecks(DFP dfp, List<Port> ports, String type) {
+  private String createPortChecks(DFP dfp, List<DFPPort> ports, String type) {
     String checks = "";
-    for (Port port : ports) {
+    for (DFPPort port : ports) {
       checks += "block"+dfp.getId()+"."+type+"ports.has = "+port.getName()+"\n";
     }
     return checks;
+  }
+
+  public void writeTrace(TestCase test, String file) {
+    String trace = "";
+    List<String> steps = test.getAllStepNames();
+    for (String step : steps) {
+      trace += step.toUpperCase()+"\n";
+    }
+    TestUtils.write(trace, file);
   }
 }

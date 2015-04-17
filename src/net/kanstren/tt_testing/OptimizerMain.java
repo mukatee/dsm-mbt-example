@@ -42,7 +42,8 @@ public class OptimizerMain {
     for (TestCase test : tests) {
       ModelState state = (ModelState) test.getAttribute("state");
       scripter.writeScript(state, "scripts/test" + testId + ".txt");
-      scripter.writeChecks(state, "scripts/checks"+testId+".txt");
+      scripter.writeChecks(state, "scripts/checks" + testId + ".txt");
+      scripter.writeTrace(test, "scripts/trace"+testId+".txt");
       testId++;
     }
     TestCoverage coverage = new TestCoverage(tests);
