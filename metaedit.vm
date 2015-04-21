@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gxl xmlns="http://www.metacase.com/gxlGOPRR">
+	<graph id="_19_99637" typeName="DesignFunctionType">
+		<slot name="FunctionName">
+			<value>
+				<string>Top Level DFT</string>
+			</value>
+		</slot>
+		<slot name="Description">
+			<value>
+				<text>Holder for everything else</text>
+			</value>
+		</slot>
+#foreach ($dfp in $dfps)
+		<object id="$dfp.uid" typeName="DesignFunctionPrototype">
+			<slot name="Short name">
+				<value>
+					<string>$dfp.name</string>
+				</value>
+			</slot>
+#if ($dfp.description)
+			<slot name="Description">
+				<value>
+					<text>$dfp.description</text>
+				</value>
+			</slot>
+#end
+#if ($dfp.dft)
+#if ($dfp.dft.defined)
+			<graph id="$dfp.dft.uid" typeName="DesignFunctionType">
+				<object href="#$dfp.dft.uid"></object>
+			</graph>
+#else
+			<graph id="$dfp.dft.uid" typeName="DesignFunctionType">
+				<slot name="FunctionName">
+					<value>
+						<string>$dfp.dft.name</string>
+					</value>
+				</slot>
+				<slot name="Description">
+					<value>
+						<text>$dfp.dft.description</text>
+					</value>
+				</slot>
+#foreach ($p in $dfp.dft.inFlows.options)
+				<object id="$p.id" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>$p.name</string>
+						</value>
+					</slot>
+				</object>
+#end
+#foreach ($p in $dfp.dft.outFlows.options)
+				<object id="$p.id" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>$p.name</string>
+						</value>
+					</slot>
+				</object>
+#end
+#foreach ($p in $dfp.dft.inPowers.options)
+				<object id="$p.id" typeName="InPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>$p.name</string>
+						</value>
+					</slot>
+				</object>
+#end
+#foreach ($p in $dfp.dft.outPowers.options)
+				<object id="$p.id" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>$p.name</string>
+						</value>
+					</slot>
+				</object>
+#end
+#foreach ($p in $dfp.dft.clients.options)
+				<object id="$p.id" typeName="ClientPort">
+					<slot name="Short name">
+						<value>
+							<string>$p.name</string>
+						</value>
+					</slot>
+				</object>
+#end
+#foreach ($p in $dfp.dft.servers.options)
+				<object id="$p.id" typeName="ServerPort">
+					<slot name="Short name">
+						<value>
+							<string>$p.name</string>
+						</value>
+					</slot>
+				</object>
+#end
+			</graph>
+		</object>
+#end
+#end
+#end
+#foreach ($dfp in $dfps)
+#foreach ($p in $dfp.inPowers.options)
+#foreach ($pair in $p.pairs)
+		<binding>
+			<relationship oid="$uid.next" typeName="Power">
+			</relationship>
+			<connection id="1">
+				<role oid="$uid.next" typeName="OutPowerPort"></role>
+				<object href="#$pair.dfp.uid"></object>
+				<port href="#$pair.id"></port>
+			</connection>
+			<connection id="2">
+				<role oid="$uid.next" typeName="InPowerPort"></role>
+				<object href="#$dfp.uid"></object>
+				<port href="#$p.id"></port>
+			</connection>
+		</binding>
+#end
+#end
+#foreach ($p in $dfp.inFlows.options)
+#foreach ($pair in $p.pairs)
+		<binding>
+			<relationship oid="$uid.next" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="$uid.next" typeName="OutFlowPort"></role>
+				<object href="#$pair.dfp.uid"></object>
+				<port href="#$pair.id"></port>
+			</connection>
+			<connection id="2">
+				<role oid="$uid.next" typeName="InFlowPort"></role>
+				<object href="#$dfp.uid"></object>
+				<port href="#$p.id"></port>
+			</connection>
+		</binding>
+#end
+#end
+#foreach ($p in $dfp.servers.options)
+#foreach ($pair in $p.pairs)
+		<binding>
+			<relationship oid="$uid.next" typeName="ClientServer">
+			</relationship>
+			<connection id="1">
+				<role oid="$uid.next" typeName="ClientPort"></role>
+				<object href="#$pair.dfp.uid"></object>
+				<port href="#$pair.id"></port>
+			</connection>
+			<connection id="2">
+				<role oid="$uid.next" typeName="ServerPort"></role>
+				<object href="#$dfp.uid"></object>
+				<port href="#$p.id"></port>
+			</connection>
+		</binding>
+#end
+#end
+#end
+	</graph>
+</gxl>

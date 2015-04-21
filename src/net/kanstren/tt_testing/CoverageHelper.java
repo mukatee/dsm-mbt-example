@@ -36,7 +36,7 @@ public class CoverageHelper {
       singleDFPCoverage(dfp1, dfpCat);
 
       for (DFP dfp2 : dfps) {
-        if (dfp1.getId() == dfp2.getId()) continue;
+        if (dfp1.getUid() == dfp2.getUid()) continue;
         twoDFPCoverage(dfp1, dfp2);
       }
     }

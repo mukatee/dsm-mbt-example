@@ -1,5 +1,6 @@
 package net.kanstren.tt_testing;
 
+import osmo.tester.model.data.Text;
 import osmo.tester.model.data.ValueSet;
 
 import java.util.ArrayList;
@@ -9,7 +10,9 @@ import java.util.List;
  * @author Teemu Kanstren.
  */
 public class DFT {
+  private final int uid;
   private final int id;
+  private final String description;
   private final List<DFP> children = new ArrayList<>();
   private ValueSet<DFTPort> inFlows = new ValueSet<>();
   private ValueSet<DFTPort> outFlows = new ValueSet<>();
@@ -17,15 +20,26 @@ public class DFT {
   private ValueSet<DFTPort> outPowers = new ValueSet<>();
   private ValueSet<DFTPort> clients = new ValueSet<>();
   private ValueSet<DFTPort> servers = new ValueSet<>();
+  private boolean defined = false;
 
   public DFT(int id, long seed) {
     this.id = id;
+    Text text = new Text(5, 10).asciiLettersAndNumbersOnly();
+    text.setSeed(seed);
+    this.description = text.random();
+    this.uid = UID.next();
     inFlows.setSeed(seed);
     outFlows.setSeed(seed);
     inPowers.setSeed(seed);
     outPowers.setSeed(seed);
     clients.setSeed(seed);
     servers.setSeed(seed);
+  }
+
+  public boolean getDefined() {
+    boolean value = defined;
+    defined = true;
+    return value;
   }
 
   public void addChild(DFP dfp) {
@@ -36,12 +50,16 @@ public class DFT {
     return children;
   }
 
-  public int getId() {
-    return id;
+  public int getUid() {
+    return uid;
   }
 
   public String getName() {
-    return "DFT" + id;
+    return "DFT"+id;
+  }
+
+  public String getDescription() {
+    return description;
   }
 
   public ValueSet<DFTPort> getInFlows() {

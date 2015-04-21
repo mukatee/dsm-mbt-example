@@ -37,11 +37,11 @@ public class OptimizerMain {
     greedy.setPopulationSize(10000);
     List<TestCase> tests = greedy.search();
 
-    Scripter scripter = new Scripter();
+    Scripter scripter = new Scripter("metaedit.vm");
     int testId = 1;
     for (TestCase test : tests) {
       ModelState state = (ModelState) test.getAttribute("state");
-      scripter.writeScript(state, "scripts/test" + testId + ".txt");
+      scripter.writeScript(state, "scripts/input" + testId + ".mxm");
       scripter.writeChecks(state, "scripts/checks" + testId + ".txt");
       scripter.writeTrace(test, "scripts/trace"+testId+".txt");
       testId++;

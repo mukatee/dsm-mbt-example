@@ -1,0 +1,63 @@
+<GXL>
+#foreach ($dft in $dfts)
+  <TYPE ID="$dft.id" NAME="$dft.name">
+    <PORTS>
+#foreach ($p in $dft.inFlows.options)
+      <INFLOW NAME="$p.name" ID="$p.id"/>
+#end
+#foreach ($p in $dft.outFlows.options)
+      <OUTFLOW NAME="$p.name" ID="$p.id"/>
+#end
+#foreach ($p in $dft.inPowers.options)
+      <INPOWER NAME="$p.name" ID="$p.id"/>
+#end
+#foreach ($p in $dft.outPowers.options)
+      <OUTPOWER NAME="$p.name" ID="$p.id"/>
+#end
+#foreach ($p in $dft.clients.options)
+      <CLIENT NAME="$p.name" ID="$p.id"/>
+#end
+#foreach ($p in $dft.servers.options)
+      <SERVER NAME="$p.name" ID="$p.id"/>
+#end
+    </PORTS>
+  </TYPE>
+#end
+#foreach ($dfp in $dfps)
+  <PROTO>
+#if ($dfp.dft)    <TYPE>$dfp.dft.name</TYPE>
+#end
+    <NAME>$dfp.name</NAME>
+#if ($dfp.description)    <description>$dfp.description</description>
+#end
+  </PROTO>
+#end
+  <CONNECTIONS>
+#foreach ($dfp in $dfps)
+#foreach ($p in $dfp.inPowers.options)
+#foreach ($pair in $p.pairs)
+    <CONNECTION>
+      <SRC DFP_NAME="$dfp.name" DFP_ID="$dfp.id" PORT_NAME="$p.name" PORT_ID="$p.id"/>
+      <DST DFP_NAME="$pair.dfp.name" DFP_ID="$pair.dfp.id" PORT_NAME="$pair.name" PORT_ID="$pair.id"/>
+    </CONNECTION>
+#end
+#end
+#foreach ($p in $dfp.inFlows.options)
+#foreach ($pair in $p.pairs)
+    <CONNECTION>
+      <SRC DFP_NAME="$dfp.name" DFP_ID="$dfp.id" PORT_NAME="$p.name" PORT_ID="$p.id"/>
+      <DST DFP_NAME="$pair.dfp.name" DFP_ID="$pair.dfp.id" PORT_NAME="$pair.name" PORT_ID="$pair.id"/>
+    </CONNECTION>
+#end
+#end
+#foreach ($p in $dfp.servers.options)
+#foreach ($pair in $p.pairs)
+    <CONNECTION>
+      <SRC DFP_NAME="$dfp.name" DFP_ID="$dfp.id" PORT_NAME="$p.name" PORT_ID="$p.id"/>
+      <DST DFP_NAME="$pair.dfp.name" DFP_ID="$pair.dfp.id" PORT_NAME="$pair.name" PORT_ID="$pair.id"/>
+    </CONNECTION>
+#end
+#end
+#end
+  </CONNECTIONS>
+</GXL>

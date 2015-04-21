@@ -24,7 +24,7 @@ public class RandomMain {
     long seed = Long.parseLong(args[0]);
     tester.generate(seed);
     TestSuite suite = tester.getSuite();
-    Scripter scripter = new Scripter();
+    Scripter scripter = new Scripter("json-input.vm");
     int testId = 1;
     for (TestCase test : suite.getAllTestCases()) {
       ModelState state = (ModelState) test.getAttribute("state");

@@ -90,7 +90,7 @@ public class EASTModel {
   @TestStep(weight = 10)
   public void addDescription() {
     DFP dfp = state.getNoDescDFPs().random();
-    dfp.setDescription("Description" + dfp.getId());
+    dfp.setDescription("Description" + dfp.getUid());
   }
 
   @Guard("CreateFlowLink")

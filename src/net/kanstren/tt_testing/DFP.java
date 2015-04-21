@@ -7,6 +7,7 @@ import osmo.tester.model.data.ValueSet;
  */
 public class DFP {
   private final int id;
+  private final int uid;
   private String description = null;
   private DFT dft = null;
   private ValueSet<DFPPort> inFlows = new ValueSet<>();
@@ -18,6 +19,7 @@ public class DFP {
 
   public DFP(int id, long seed) {
     this.id = id;
+    this.uid = UID.next();
     inFlows.setSeed(seed);
     outFlows.setSeed(seed);
     inPowers.setSeed(seed);
@@ -26,12 +28,12 @@ public class DFP {
     servers.setSeed(seed);
   }
 
-  public int getId() {
-    return id;
+  public int getUid() {
+    return uid;
   }
 
   public String getName() {
-    return "DFP" + id;
+    return "DFP"+id;
   }
 
   public String getDescription() {
@@ -157,4 +159,6 @@ public class DFP {
   public void addClient(DFTPort port) {
     clients.add(new DFPPort(port, this));
   }
+
+
 }

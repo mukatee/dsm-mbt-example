@@ -16,8 +16,10 @@ public class Scripter {
   private VelocityEngine velocity = new VelocityEngine();
   /** For storing template variables. */
   private VelocityContext vc = new VelocityContext();
+  private final String template;
 
-  public Scripter() {
+  public Scripter(String template) {
+    this.template = template;
     velocity.setProperty("resource.loader", "file");
     velocity.setProperty("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.FileResourceLoader");
     velocity.setProperty("file.resource.loader.path", ".");
@@ -29,44 +31,45 @@ public class Scripter {
     vc.put("dfps", dfps);
     List<DFT> dfts = state.getDFTs().getOptions();
     vc.put("dfts", dfts);
+    vc.put("uid", new UID());
 
     StringWriter sw = new StringWriter();
-    velocity.mergeTemplate("json-input.vm", "UTF8", vc, sw);
+    velocity.mergeTemplate(template, "UTF8", vc, sw);
     TestUtils.write(sw.toString(), file);
   }
 
   public void writeChecks(ModelState state, String file) {
     String checks = "";
-    checks += "blocks = "+state.dfpCount()+"\n";
-    checks += "types = "+state.dftCount()+"\n";
-    checks += "all SID unique"+"\n";
+    checks += "ADD SID UNIQUE"+"\n";
+    checks += "BLOCKS = "+state.dfpCount()+"\n";
+    checks += "TYPES = "+state.dftCount()+"\n";
     List<DFT> dfts = state.getDFTs().getOptions();
     for (DFT dft : dfts) {
-      checks += "type"+dft.getId()+".name = "+dft.getName()+"\n";
+      checks += "TYPE"+dft.getUid()+".NAME = "+dft.getName()+"\n";
     }
 
     List<DFP> dfps = state.getDFPs().getOptions();
     for (DFP dfp : dfps) {
-      checks += "block"+dfp.getId()+".name = "+dfp.getName()+"\n";
+      checks += "BLOCK"+dfp.getUid()+".NAME = "+dfp.getName()+"\n";
       int inPorts = dfp.getServers().size();
       inPorts += dfp.getInFlows().size();
       inPorts += dfp.getInPowers().size();
       int outPorts = dfp.getOutFlows().size();
       outPorts += dfp.getOutPowers().size();
       outPorts += dfp.getClients().size();
-      checks += "block"+dfp.getId()+".inport_count = "+inPorts+"\n";
-      checks += "block"+dfp.getId()+".outport_count = "+outPorts+"\n";
+      checks += "BLOCK"+dfp.getUid()+".INPORT_COUNT = "+inPorts+"\n";
+      checks += "BLOCK"+dfp.getUid()+".OUTPORT_COUNT = "+outPorts+"\n";
       if (dfp.getDescription() == null) {
-        checks += "!block"+dfp.getId()+".description\n";
+        checks += "!BLOCK"+dfp.getUid()+".DESCRIPTION\n";
       } else {
-        checks += "block"+dfp.getId()+".description = "+dfp.getDescription()+"\n";
+        checks += "BLOCK"+dfp.getUid()+".DESCRIPTION = "+dfp.getDescription()+"\n";
       }
-      createPortChecks(dfp, dfp.getInFlows().getOptions(), "in");
-      createPortChecks(dfp, dfp.getInPowers().getOptions(), "in");
-      createPortChecks(dfp, dfp.getServers().getOptions(), "in");
-      createPortChecks(dfp, dfp.getOutFlows().getOptions(), "out");
-      createPortChecks(dfp, dfp.getOutPowers().getOptions(), "out");
-      createPortChecks(dfp, dfp.getClients().getOptions(), "out");
+      createPortChecks(dfp, dfp.getInFlows().getOptions(), "IN");
+      createPortChecks(dfp, dfp.getInPowers().getOptions(), "IN");
+      createPortChecks(dfp, dfp.getServers().getOptions(), "IN");
+      createPortChecks(dfp, dfp.getOutFlows().getOptions(), "OUT");
+      createPortChecks(dfp, dfp.getOutPowers().getOptions(), "OUT");
+      createPortChecks(dfp, dfp.getClients().getOptions(), "OUT");
     }
     TestUtils.write(checks, file);
   }
@@ -74,7 +77,7 @@ public class Scripter {
   private String createPortChecks(DFP dfp, List<DFPPort> ports, String type) {
     String checks = "";
     for (DFPPort port : ports) {
-      checks += "block"+dfp.getId()+"."+type+"ports.has = "+port.getName()+"\n";
+      checks += "BLOCK"+dfp.getUid()+"."+type+"PORTS.HAS = "+port.getName()+"\n";
     }
     return checks;
   }
