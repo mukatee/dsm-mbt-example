@@ -24,11 +24,11 @@ public class RandomMain {
     long seed = Long.parseLong(args[0]);
     tester.generate(seed);
     TestSuite suite = tester.getSuite();
-    Scripter scripter = new Scripter("json-input.vm");
+    Scripter scripter = new Scripter("metaedit.vm");
     int testId = 1;
     for (TestCase test : suite.getAllTestCases()) {
       ModelState state = (ModelState) test.getAttribute("state");
-      scripter.writeScript(state, "scripts/test" + testId + ".txt");
+      scripter.writeScript(state, "scripts/input" + testId + ".mxm");
       scripter.writeChecks(state, "scripts/checks"+testId+".txt");
       scripter.writeTrace(test, "scripts/trace"+testId+".txt");
       testId++;

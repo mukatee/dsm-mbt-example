@@ -3,7 +3,7 @@
 	<graph id="_19_99637" typeName="DesignFunctionType">
 		<slot name="FunctionName">
 			<value>
-				<string>Top Level DFT</string>
+				<string>Top_Level_DFT</string>
 			</value>
 		</slot>
 		<slot name="Description">
@@ -97,9 +97,9 @@
 				</object>
 #end
 			</graph>
+#end
+#end
 		</object>
-#end
-#end
 #end
 #foreach ($dfp in $dfps)
 #foreach ($p in $dfp.inPowers.options)
@@ -141,7 +141,7 @@
 #foreach ($p in $dfp.servers.options)
 #foreach ($pair in $p.pairs)
 		<binding>
-			<relationship oid="$uid.next" typeName="ClientServer">
+			<relationship oid="$uid.next" typeName="ClientServerInterface">
 			</relationship>
 			<connection id="1">
 				<role oid="$uid.next" typeName="ClientPort"></role>
