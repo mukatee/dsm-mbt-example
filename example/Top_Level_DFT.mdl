@@ -1,0 +1,413 @@
+Model { 
+  Name			  "Top_Level_DFT" 
+  Description		  "Holder for everything else"
+  Version		  1.0
+  BlockDefaults {
+    Orientation		    right
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    NamePlacement	    normal
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	 center
+    VerticalAlignment	 middle
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  System {
+    Name		    "Top_Level_DFT"
+    Location		    [10, 100, 700, 500]
+    Open		    off
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    Block {
+      BlockType		      ModelReference
+      Name		      "DFP1"
+      SID		      "1"
+      TAG		      "DesignFunctionType"
+      Description	      "Description128365"
+      Ports		      [15,22]
+      Position		      [, , , ]
+      ModelNameDialog	      "DFT1"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.0"
+      List {
+		ListType		InputPortNames
+		port0			"InFlow1"
+		port1			"InFlow2"
+		port2			"InFlow3"
+		port3			"InFlow4"
+		port4			"InFlow5"
+		port5			"InFlow6"
+		port6			"InFlow7"
+		port7			"InPower1"
+		port8			"InPower2"
+		port9			"InPower3"
+		port10			"InPower4"
+		port11			"InPower5"
+		port12			"Server1"
+		port13			"Server2"
+		port14			"Server3"
+		}
+      List {
+		ListType		OutputPortNames
+		port0			"Client1"
+		port1			"Client2"
+		port2			"OutFlow1"
+		port3			"OutFlow2"
+		port4			"OutFlow3"
+		port5			"OutFlow4"
+		port6			"OutFlow5"
+		port7			"OutFlow6"
+		port8			"OutFlow7"
+		port9			"OutFlow8"
+		port10			"OutFlow9"
+		port11			"OutPower1"
+		port12			"OutPower10"
+		port13			"OutPower11"
+		port14			"OutPower2"
+		port15			"OutPower3"
+		port16			"OutPower4"
+		port17			"OutPower5"
+		port18			"OutPower6"
+		port19			"OutPower7"
+		port20			"OutPower8"
+		port21			"OutPower9"
+		}
+      CopyOfModelName	      "DFT1"
+
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "DFP2"
+      SID		      "2"
+      TAG		      "DesignFunctionType"
+      Description	      "Description128366"
+      Ports		      [15,22]
+      Position		      [, , , ]
+      ModelNameDialog	      "DFT1"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.0"
+      List {
+		ListType		InputPortNames
+		port0			"InFlow1"
+		port1			"InFlow2"
+		port2			"InFlow3"
+		port3			"InFlow4"
+		port4			"InFlow5"
+		port5			"InFlow6"
+		port6			"InFlow7"
+		port7			"InPower1"
+		port8			"InPower2"
+		port9			"InPower3"
+		port10			"InPower4"
+		port11			"InPower5"
+		port12			"Server1"
+		port13			"Server2"
+		port14			"Server3"
+		}
+      List {
+		ListType		OutputPortNames
+		port0			"Client1"
+		port1			"Client2"
+		port2			"OutFlow1"
+		port3			"OutFlow2"
+		port4			"OutFlow3"
+		port5			"OutFlow4"
+		port6			"OutFlow5"
+		port7			"OutFlow6"
+		port8			"OutFlow7"
+		port9			"OutFlow8"
+		port10			"OutFlow9"
+		port11			"OutPower1"
+		port12			"OutPower10"
+		port13			"OutPower11"
+		port14			"OutPower2"
+		port15			"OutPower3"
+		port16			"OutPower4"
+		port17			"OutPower5"
+		port18			"OutPower6"
+		port19			"OutPower7"
+		port20			"OutPower8"
+		port21			"OutPower9"
+		}
+      CopyOfModelName	      "DFT1"
+
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "DFP3"
+      SID		      "3"
+      TAG		      "DesignFunctionType"
+      Description	      "Description128367"
+      Ports		      [15,22]
+      Position		      [, , , ]
+      ModelNameDialog	      "DFT1"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.0"
+      List {
+		ListType		InputPortNames
+		port0			"InFlow1"
+		port1			"InFlow2"
+		port2			"InFlow3"
+		port3			"InFlow4"
+		port4			"InFlow5"
+		port5			"InFlow6"
+		port6			"InFlow7"
+		port7			"InPower1"
+		port8			"InPower2"
+		port9			"InPower3"
+		port10			"InPower4"
+		port11			"InPower5"
+		port12			"Server1"
+		port13			"Server2"
+		port14			"Server3"
+		}
+      List {
+		ListType		OutputPortNames
+		port0			"Client1"
+		port1			"Client2"
+		port2			"OutFlow1"
+		port3			"OutFlow2"
+		port4			"OutFlow3"
+		port5			"OutFlow4"
+		port6			"OutFlow5"
+		port7			"OutFlow6"
+		port8			"OutFlow7"
+		port9			"OutFlow8"
+		port10			"OutFlow9"
+		port11			"OutPower1"
+		port12			"OutPower10"
+		port13			"OutPower11"
+		port14			"OutPower2"
+		port15			"OutPower3"
+		port16			"OutPower4"
+		port17			"OutPower5"
+		port18			"OutPower6"
+		port19			"OutPower7"
+		port20			"OutPower8"
+		port21			"OutPower9"
+		}
+      CopyOfModelName	      "DFT1"
+
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "DFP4"
+      SID		      "4"
+      TAG		      "DesignFunctionType"
+      Ports		      [15,22]
+      Position		      [, , , ]
+      ModelNameDialog	      "DFT1"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.0"
+      List {
+		ListType		InputPortNames
+		port0			"InFlow1"
+		port1			"InFlow2"
+		port2			"InFlow3"
+		port3			"InFlow4"
+		port4			"InFlow5"
+		port5			"InFlow6"
+		port6			"InFlow7"
+		port7			"InPower1"
+		port8			"InPower2"
+		port9			"InPower3"
+		port10			"InPower4"
+		port11			"InPower5"
+		port12			"Server1"
+		port13			"Server2"
+		port14			"Server3"
+		}
+      List {
+		ListType		OutputPortNames
+		port0			"Client1"
+		port1			"Client2"
+		port2			"OutFlow1"
+		port3			"OutFlow2"
+		port4			"OutFlow3"
+		port5			"OutFlow4"
+		port6			"OutFlow5"
+		port7			"OutFlow6"
+		port8			"OutFlow7"
+		port9			"OutFlow8"
+		port10			"OutFlow9"
+		port11			"OutPower1"
+		port12			"OutPower10"
+		port13			"OutPower11"
+		port14			"OutPower2"
+		port15			"OutPower3"
+		port16			"OutPower4"
+		port17			"OutPower5"
+		port18			"OutPower6"
+		port19			"OutPower7"
+		port20			"OutPower8"
+		port21			"OutPower9"
+		}
+      CopyOfModelName	      "DFT1"
+
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "DFP5"
+      SID		      "5"
+      TAG		      "DesignFunctionType"
+      Description	      "Description128393"
+      Ports		      [2,2]
+      Position		      [, , , ]
+      ModelNameDialog	      "DFT2"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.0"
+      List {
+		ListType		InputPortNames
+		port0			"InFlow1"
+		port1			"Server1"
+		}
+      List {
+		ListType		OutputPortNames
+		port0			"OutFlow1"
+		port1			"OutPower1"
+		}
+      CopyOfModelName	      "DFT2"
+
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "DFP6"
+      SID		      "6"
+      TAG		      "DesignFunctionType"
+      Description	      "Description128420"
+      Ports		      [2,2]
+      Position		      [, , , ]
+      ModelNameDialog	      "DFT2"
+      SimulationMode	      "Normal"
+      ModelReferenceVersion   "1.0"
+      List {
+		ListType		InputPortNames
+		port0			"InFlow1"
+		port1			"Server1"
+		}
+      List {
+		ListType		OutputPortNames
+		port0			"OutFlow1"
+		port1			"OutPower1"
+		}
+      CopyOfModelName	      "DFT2"
+
+    }
+    Block {
+      BlockType		      ModelReference
+      Name		      "DFP7"
+      SID		      "7"
+      TAG		      ""
+      Position		      [, , , ]
+
+    }
+    Line { 
+      SrcBlock		      "DFP3"
+      SrcPort		      1
+      DstBlock		      "DFP2"
+      DstPort		      13
+    }
+    Line { 
+      SrcBlock		      "DFP4"
+      SrcPort		      2
+      DstBlock		      "DFP5"
+      DstPort		      2
+    }
+    Line { 
+      SrcBlock		      "DFP2"
+      SrcPort		      6
+      DstBlock		      "DFP1"
+      DstPort		      2
+    }
+    Line { 
+      SrcBlock		      "DFP3"
+      SrcPort		      3
+      DstBlock		      "DFP2"
+      DstPort		      1
+    }
+    Line { 
+      SrcBlock		      "DFP1"
+      SrcPort		      4
+      DstBlock		      "DFP3"
+      DstPort		      2
+    }
+    Line { 
+      SrcBlock		      "DFP4"
+      SrcPort		      8
+      DstBlock		      "DFP3"
+      DstPort		      4
+    }
+    Line { 
+      SrcBlock		      "DFP2"
+      SrcPort		      9
+      DstBlock		      "DFP4"
+      DstPort		      1
+    }
+    Line { 
+      SrcBlock		      "DFP1"
+      SrcPort		      3
+      DstBlock		      "DFP4"
+      DstPort		      2
+    }
+    Line { 
+      SrcBlock		      "DFP2"
+      SrcPort		      6
+      DstBlock		      "DFP6"
+      DstPort		      1
+    }
+    Line { 
+      SrcBlock		      "DFP4"
+      SrcPort		      3
+      DstBlock		      "DFP6"
+      DstPort		      1
+    }
+    Line { 
+      SrcBlock		      "DFP5"
+      SrcPort		      2
+      DstBlock		      "DFP2"
+      DstPort		      10
+    }
+    Line { 
+      SrcBlock		      "DFP6"
+      SrcPort		      2
+      DstBlock		      "DFP4"
+      DstPort		      10
+    }
+    Line { 
+      SrcBlock		      "DFP5"
+      SrcPort		      2
+      DstBlock		      "DFP4"
+      DstPort		      10
+    }
+    Line { 
+      SrcBlock		      "DFP3"
+      SrcPort		      17
+      DstBlock		      "DFP4"
+      DstPort		      11
+    }
+  }
+}

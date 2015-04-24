@@ -9,6 +9,7 @@ import java.util.List;
 public class DFPPort {
   private final DFTPort dftPort;
   private final DFP dfp;
+  private int position = -1;
   private List<DFPPort> pairs = new ArrayList<>();
 
   public DFPPort(DFTPort dftPort, DFP dfp) {
@@ -22,6 +23,14 @@ public class DFPPort {
 
   public int getId() {
     return dftPort.getId();
+  }
+
+  public void setPosition(int position) {
+    this.position = position;
+  }
+
+  public int getPosition() {
+    return dftPort.getPosition();
   }
 
   public void addPair(DFPPort pair) {

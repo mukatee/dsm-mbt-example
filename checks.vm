@@ -1,0 +1,93 @@
+#set($H='#')
+#foreach ($c in $abs_checks)
+$H $c
+#end
+
+import glob
+
+def check(value, error):
+    if not value:
+        print(error)
+
+dfts = glob.glob("reports/DFT*.mdl")
+dft_count = len(dfts)
+check(dft_count == $dft_count, "Number of DFT output should be $dft_count, was "+str(dft_count))
+
+dfp_inports = $inport_count_dict
+dfp_outports = $outport_count_dict
+dfp_descriptions = $desc_dict
+lines_expected = $expected_lines_list
+
+with open("$outputfile") as f:
+    content = f.readlines()
+
+sids = []
+dfp_names = []
+inports = []
+outports = []
+name = None
+dfp_count = 0
+lines_actual = []
+line_count = 0
+
+for line in content:
+    l = line.strip()
+    if l.startswith("BlockType"):
+        check(l.endswith("ModelReference"), "BlockType should always be 'ModelReference'. For "+str(name)+" found "+l)
+    if l.startswith("Block {"):
+        if dfp_count > 0:
+            expected = dfp_inports[name];
+            actual = len(inports)
+            check(actual == expected, "Number of inports for "+name+" expected "+str(expected)+" was "+str(actual))
+            expected = dfp_outports[name];
+            actual = len(outports)
+            check(actual == expected, "Number of outports for "+name+" expected "+str(expected)+" was "+str(actual))
+            expected = dfp_descriptions[name]
+            check (description == expected, "Description for "+name+" expected "+str(expected)+" was "+str(description))
+        description = None
+        name = None
+        dfp_count += 1
+        inports = []
+        outports = []
+    if l.startswith("Name\t"):
+        name = l.split('"')[1]
+        dfp_names.append(name)
+    if l.startswith("Description\t"):
+        description = l.split('"')[1]
+    if l.startswith("SID\t"):
+        sid = l.split('"')[1]
+        check(sid not in sids, "SID should be unique. '"+sid+"' was not.")
+        sids.append(sid)
+    if l.startswith("List {"):
+        port_type = None
+    if l.startswith("ListType"):
+        if l.endswith("InputPortNames"):
+            port_type = "in"
+        if l.endswith("OutputPortNames"):
+            port_type = "out"
+    if l.startswith("port") and port_type == "in":
+        inports.append(l.split('"')[1])
+    if l.startswith("port") and port_type == "out":
+        outports.append(l.split('"')[1])
+    if l.startswith("Line {"):
+        if (line_count > 0):
+            lines_actual.append(str(src_block)+"."+str(src_port)+"->"+str(dst_block)+"."+str(dst_port))
+        src_block = None
+        dst_block = None
+        src_port = None
+        dst_port = None
+        line_count += 1
+    if l.startswith("SrcBlock"):
+        src_block = l.split('"')[1]
+    if l.startswith("DstBlock"):
+        dst_block = l.split('"')[1]
+    if l.startswith("SrcPort"):
+        src_port = l[8:].strip()
+    if l.startswith("DstPort"):
+        dst_port = l[8:].strip()
+#    print(name)
+check(dfp_count == $dfp_count, "Number of DFP should be $dfp_count, was "+str(dfp_count))
+check(line_count == $line_count, "Number of lines expected $line_count, was "+str(line_count))
+for line in lines_expected:
+    check(line in lines_actual, "Line not found:"+line)
+print("Checking finished. Any errors printed above.")

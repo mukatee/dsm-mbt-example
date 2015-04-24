@@ -1,0 +1,2 @@
+mep51.exe  loginDB:user:password: EAST-ADL_VTT sysadmin sysadmin setProject: EAST-ADL fileInPatch: $inputfile forAll:run: DesignFunctionType mdlFileExport logoutAndExit
+python $checkerfile

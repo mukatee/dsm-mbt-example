@@ -1,0 +1,305 @@
+Model { 
+  Name			  "DFT1" 
+  Description		  "iKIEGXiL4"
+  Version		  1.0
+  BlockDefaults {
+    Orientation		    right
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    NamePlacement	    normal
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	 center
+    VerticalAlignment	 middle
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  System {
+    Name		    "DFT1"
+    Location		    [10, 100, 700, 500]
+    Open		    off
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    Block {
+      BlockType		      Inport
+      Name		      "InFlow1"
+      SID		      "1"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InFlow2"
+      SID		      "2"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InFlow3"
+      SID		      "3"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InFlow4"
+      SID		      "4"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InFlow5"
+      SID		      "5"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InFlow6"
+      SID		      "6"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InFlow7"
+      SID		      "7"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InPower1"
+      SID		      "8"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InPower2"
+      SID		      "9"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InPower3"
+      SID		      "10"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InPower4"
+      SID		      "11"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "InPower5"
+      SID		      "12"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Server1"
+      SID		      "13"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Server2"
+      SID		      "14"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Server3"
+      SID		      "15"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Client1"
+      SID		      "16"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Client2"
+      SID		      "17"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow1"
+      SID		      "18"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow2"
+      SID		      "19"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow3"
+      SID		      "20"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow4"
+      SID		      "21"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow5"
+      SID		      "22"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow6"
+      SID		      "23"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow7"
+      SID		      "24"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow8"
+      SID		      "25"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow9"
+      SID		      "26"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower1"
+      SID		      "27"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower10"
+      SID		      "28"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower11"
+      SID		      "29"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower2"
+      SID		      "30"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower3"
+      SID		      "31"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower4"
+      SID		      "32"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower5"
+      SID		      "33"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower6"
+      SID		      "34"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower7"
+      SID		      "35"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower8"
+      SID		      "36"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower9"
+      SID		      "37"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+  }
+}

@@ -1,0 +1,74 @@
+Model { 
+  Name			  "DFT2" 
+  Description		  "jPMQikznNK"
+  Version		  1.0
+  BlockDefaults {
+    Orientation		    right
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    NamePlacement	    normal
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	 center
+    VerticalAlignment	 middle
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  System {
+    Name		    "DFT2"
+    Location		    [10, 100, 700, 500]
+    Open		    off
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    Block {
+      BlockType		      Inport
+      Name		      "InFlow1"
+      SID		      "1"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Server1"
+      SID		      "2"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutFlow1"
+      SID		      "3"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "OutPower1"
+      SID		      "4"
+      Position		      [, , 20, 20]
+      IconDisplay	      "Port number" 
+    }
+  }
+}

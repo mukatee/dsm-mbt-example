@@ -37,13 +37,15 @@ public class OptimizerMain {
     greedy.setPopulationSize(10000);
     List<TestCase> tests = greedy.search();
 
-    Scripter scripter = new Scripter("metaedit.vm");
+    Scripter scripter = new Scripter("metaedit.vm", "checks.vm", "run_me.vm");
     int testId = 1;
     for (TestCase test : tests) {
       ModelState state = (ModelState) test.getAttribute("state");
-      scripter.writeScript(state, "scripts/input" + testId + ".mxm");
-      scripter.writeChecks(state, "scripts/checks" + testId + ".txt");
-      scripter.writeTrace(test, "scripts/trace"+testId+".txt");
+      String dir = "scripts/test"+testId;
+      scripter.writeBatFile("input"+testId+".mxm", dir+"/run_me.renametobat", "checker"+testId+".py");
+      scripter.writeScript(state, dir + "/input" + testId + ".mxm", "output" + testId);
+      scripter.writeChecks(state, dir+"/checker" + testId + ".py", "reports/output"+testId+".mdl");
+      scripter.writeTrace(test, dir+"/trace"+testId+".txt");
       testId++;
     }
     TestCoverage coverage = new TestCoverage(tests);

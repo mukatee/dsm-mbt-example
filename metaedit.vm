@@ -1,9 +1,10 @@
+#set ($port_position = 1)
 <?xml version="1.0" encoding="UTF-8"?>
 <gxl xmlns="http://www.metacase.com/gxlGOPRR">
 	<graph id="_19_99637" typeName="DesignFunctionType">
 		<slot name="FunctionName">
 			<value>
-				<string>Top_Level_DFT</string>
+				<string>$outputname</string>
 			</value>
 		</slot>
 		<slot name="Description">
@@ -42,7 +43,7 @@
 						<text>$dfp.dft.description</text>
 					</value>
 				</slot>
-#foreach ($p in $dfp.dft.inFlows.options)
+#foreach ($p in $dfp.inFlows.options)
 				<object id="$p.id" typeName="InFlowPort">
 					<slot name="Short name">
 						<value>
@@ -50,8 +51,10 @@
 						</value>
 					</slot>
 				</object>
+$p.setPosition($port_position)
+#set( $port_position = $port_position + 1 )
 #end
-#foreach ($p in $dfp.dft.outFlows.options)
+#foreach ($p in $dfp.outFlows.options)
 				<object id="$p.id" typeName="OutFlowPort">
 					<slot name="Short name">
 						<value>
@@ -59,8 +62,10 @@
 						</value>
 					</slot>
 				</object>
+$p.setPosition($port_position)
+#set( $port_position = $port_position + 1 )
 #end
-#foreach ($p in $dfp.dft.inPowers.options)
+#foreach ($p in $dfp.inPowers.options)
 				<object id="$p.id" typeName="InPowerPort">
 					<slot name="Short name">
 						<value>
@@ -68,8 +73,10 @@
 						</value>
 					</slot>
 				</object>
+$p.setPosition($port_position)
+#set( $port_position = $port_position + 1 )
 #end
-#foreach ($p in $dfp.dft.outPowers.options)
+#foreach ($p in $dfp.outPowers.options)
 				<object id="$p.id" typeName="OutPowerPort">
 					<slot name="Short name">
 						<value>
@@ -77,8 +84,10 @@
 						</value>
 					</slot>
 				</object>
+$p.setPosition($port_position)
+#set( $port_position = $port_position + 1 )
 #end
-#foreach ($p in $dfp.dft.clients.options)
+#foreach ($p in $dfp.clients.options)
 				<object id="$p.id" typeName="ClientPort">
 					<slot name="Short name">
 						<value>
@@ -86,8 +95,10 @@
 						</value>
 					</slot>
 				</object>
+$p.setPosition($port_position)
+#set( $port_position = $port_position + 1 )
 #end
-#foreach ($p in $dfp.dft.servers.options)
+#foreach ($p in $dfp.servers.options)
 				<object id="$p.id" typeName="ServerPort">
 					<slot name="Short name">
 						<value>
@@ -95,6 +106,8 @@
 						</value>
 					</slot>
 				</object>
+$p.setPosition($port_position)
+#set( $port_position = $port_position + 1 )
 #end
 			</graph>
 #end

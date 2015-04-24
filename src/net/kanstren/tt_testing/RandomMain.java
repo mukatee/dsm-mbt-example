@@ -24,13 +24,15 @@ public class RandomMain {
     long seed = Long.parseLong(args[0]);
     tester.generate(seed);
     TestSuite suite = tester.getSuite();
-    Scripter scripter = new Scripter("metaedit.vm");
+    Scripter scripter = new Scripter("metaedit.vm", "checks.vm", "run_me.vm");
     int testId = 1;
     for (TestCase test : suite.getAllTestCases()) {
       ModelState state = (ModelState) test.getAttribute("state");
-      scripter.writeScript(state, "scripts/input" + testId + ".mxm");
-      scripter.writeChecks(state, "scripts/checks"+testId+".txt");
-      scripter.writeTrace(test, "scripts/trace"+testId+".txt");
+      String dir = "scripts/test"+testId;
+      scripter.writeBatFile("input"+testId+".mxm", dir+"/run_me.bat", "checker"+testId+".py");
+      scripter.writeScript(state, dir + "/input" + testId + ".mxm", "output" + testId);
+      scripter.writeChecks(state, dir+"/checker" + testId + ".py", "reports/output"+testId+".mdl");
+      scripter.writeTrace(test, dir+"/trace"+testId+".txt");
       testId++;
     }
     HTMLCoverageReporter html = new HTMLCoverageReporter(suite.getCoverage(), suite.getAllTestCases(), tester.getFsm());

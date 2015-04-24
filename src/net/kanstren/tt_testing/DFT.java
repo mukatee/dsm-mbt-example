@@ -88,7 +88,7 @@ public class DFT {
 
   public void addInFlow() {
     int n = inFlows.size() + 1;
-    DFTPort port = new DFTPort("InFlow" + n, UID.next());
+    DFTPort port = new DFTPort("InFlow" + n, UID.next(), n);
     inFlows.add(port);
     for (DFP dfp : children) {
       dfp.addInFlow(port);
@@ -97,7 +97,7 @@ public class DFT {
 
   public void addOutFlow() {
     int n = outFlows.size() + 1;
-    DFTPort port = new DFTPort("OutFlow" + n, UID.next());
+    DFTPort port = new DFTPort("OutFlow" + n, UID.next(), n);
     outFlows.add(port);
     for (DFP dfp : children) {
       dfp.addOutFlow(port);
@@ -106,7 +106,7 @@ public class DFT {
 
   public void addInPower() {
     int n = inPowers.size() + 1;
-    DFTPort port = new DFTPort("InPower" + n, UID.next());
+    DFTPort port = new DFTPort("InPower" + n, UID.next(), n);
     inPowers.add(port);
     for (DFP dfp : children) {
       dfp.addInPower(port);
@@ -115,7 +115,7 @@ public class DFT {
 
   public void addOutPower() {
     int n = outPowers.size() + 1;
-    DFTPort port = new DFTPort("OutPower" + n, UID.next());
+    DFTPort port = new DFTPort("OutPower" + n, UID.next(), n);
     outPowers.add(port);
     for (DFP dfp : children) {
       dfp.addOutPower(port);
@@ -124,7 +124,7 @@ public class DFT {
 
   public void addClient() {
     int n = clients.size() + 1;
-    DFTPort port = new DFTPort("Client" + n, UID.next());
+    DFTPort port = new DFTPort("Client" + n, UID.next(), n);
     clients.add(port);
     for (DFP dfp : children) {
       dfp.addClient(port);
@@ -133,7 +133,7 @@ public class DFT {
 
   public void addServer() {
     int n = servers.size() + 1;
-    DFTPort port = new DFTPort("Server" + n, UID.next());
+    DFTPort port = new DFTPort("Server" + n, UID.next(), n);
     servers.add(port);
     for (DFP dfp : children) {
       dfp.addServer(port);

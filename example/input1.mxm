@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gxl xmlns="http://www.metacase.com/gxlGOPRR">
+	<graph id="_19_99637" typeName="DesignFunctionType">
+		<slot name="FunctionName">
+			<value>
+				<string>Top_Level_DFT</string>
+			</value>
+		</slot>
+		<slot name="Description">
+			<value>
+				<text>Holder for everything else</text>
+			</value>
+		</slot>
+		<object id="128365" typeName="DesignFunctionPrototype">
+			<slot name="Short name">
+				<value>
+					<string>DFP1</string>
+				</value>
+			</slot>
+			<slot name="Description">
+				<value>
+					<text>Description128365</text>
+				</value>
+			</slot>
+			<graph id="128368" typeName="DesignFunctionType">
+				<slot name="FunctionName">
+					<value>
+						<string>DFT1</string>
+					</value>
+				</slot>
+				<slot name="Description">
+					<value>
+						<text>iKIEGXiL4</text>
+					</value>
+				</slot>
+				<object id="128378" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>InFlow1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128381" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>InFlow2</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128382" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>InFlow3</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128389" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>InFlow4</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128426" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>InFlow5</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128433" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>InFlow6</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128458" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>InFlow7</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128374" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128376" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow2</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128380" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow3</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128383" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow4</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128384" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow5</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128391" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow6</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128403" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow7</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128419" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow8</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128460" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow9</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128401" typeName="InPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>InPower1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128413" typeName="InPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>InPower2</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128414" typeName="InPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>InPower3</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128416" typeName="InPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>InPower4</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128455" typeName="InPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>InPower5</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128373" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128386" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower2</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128399" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower3</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128409" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower4</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128411" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower5</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128412" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower6</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128415" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower7</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128417" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower8</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128430" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower9</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128434" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower10</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128459" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower11</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128369" typeName="ClientPort">
+					<slot name="Short name">
+						<value>
+							<string>Client1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128405" typeName="ClientPort">
+					<slot name="Short name">
+						<value>
+							<string>Client2</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128387" typeName="ServerPort">
+					<slot name="Short name">
+						<value>
+							<string>Server1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128397" typeName="ServerPort">
+					<slot name="Short name">
+						<value>
+							<string>Server2</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128407" typeName="ServerPort">
+					<slot name="Short name">
+						<value>
+							<string>Server3</string>
+						</value>
+					</slot>
+				</object>
+			</graph>
+		</object>
+		<object id="128366" typeName="DesignFunctionPrototype">
+			<slot name="Short name">
+				<value>
+					<string>DFP2</string>
+				</value>
+			</slot>
+			<slot name="Description">
+				<value>
+					<text>Description128366</text>
+				</value>
+			</slot>
+			<graph id="128368" typeName="DesignFunctionType">
+				<object href="#128368"></object>
+			</graph>
+		</object>
+		<object id="128367" typeName="DesignFunctionPrototype">
+			<slot name="Short name">
+				<value>
+					<string>DFP3</string>
+				</value>
+			</slot>
+			<slot name="Description">
+				<value>
+					<text>Description128367</text>
+				</value>
+			</slot>
+			<graph id="128368" typeName="DesignFunctionType">
+				<object href="#128368"></object>
+			</graph>
+		</object>
+		<object id="128370" typeName="DesignFunctionPrototype">
+			<slot name="Short name">
+				<value>
+					<string>DFP4</string>
+				</value>
+			</slot>
+			<graph id="128368" typeName="DesignFunctionType">
+				<object href="#128368"></object>
+			</graph>
+		</object>
+		<object id="128393" typeName="DesignFunctionPrototype">
+			<slot name="Short name">
+				<value>
+					<string>DFP5</string>
+				</value>
+			</slot>
+			<slot name="Description">
+				<value>
+					<text>Description128393</text>
+				</value>
+			</slot>
+			<graph id="128424" typeName="DesignFunctionType">
+				<slot name="FunctionName">
+					<value>
+						<string>DFT2</string>
+					</value>
+				</slot>
+				<slot name="Description">
+					<value>
+						<text>jPMQikznNK</text>
+					</value>
+				</slot>
+				<object id="128428" typeName="InFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>InFlow1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128456" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>OutFlow1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128449" typeName="OutPowerPort">
+					<slot name="Short name">
+						<value>
+							<string>OutPower1</string>
+						</value>
+					</slot>
+				</object>
+				<object id="128432" typeName="ServerPort">
+					<slot name="Short name">
+						<value>
+							<string>Server1</string>
+						</value>
+					</slot>
+				</object>
+			</graph>
+		</object>
+		<object id="128420" typeName="DesignFunctionPrototype">
+			<slot name="Short name">
+				<value>
+					<string>DFP6</string>
+				</value>
+			</slot>
+			<slot name="Description">
+				<value>
+					<text>Description128420</text>
+				</value>
+			</slot>
+			<graph id="128424" typeName="DesignFunctionType">
+				<object href="#128424"></object>
+			</graph>
+		</object>
+		<object id="128435" typeName="DesignFunctionPrototype">
+			<slot name="Short name">
+				<value>
+					<string>DFP7</string>
+				</value>
+			</slot>
+		</object>
+		<binding>
+			<relationship oid="456343" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="456344" typeName="OutFlowPort"></role>
+				<object href="#128366"></object>
+				<port href="#128383"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456345" typeName="InFlowPort"></role>
+				<object href="#128365"></object>
+				<port href="#128381"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456346" typeName="Power">
+			</relationship>
+			<connection id="1">
+				<role oid="456347" typeName="OutPowerPort"></role>
+				<object href="#128393"></object>
+				<port href="#128449"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456348" typeName="InPowerPort"></role>
+				<object href="#128366"></object>
+				<port href="#128414"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456349" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="456350" typeName="OutFlowPort"></role>
+				<object href="#128367"></object>
+				<port href="#128374"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456351" typeName="InFlowPort"></role>
+				<object href="#128366"></object>
+				<port href="#128378"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456352" typeName="ClientServerInterface">
+			</relationship>
+			<connection id="1">
+				<role oid="456353" typeName="ClientPort"></role>
+				<object href="#128367"></object>
+				<port href="#128369"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456354" typeName="ServerPort"></role>
+				<object href="#128366"></object>
+				<port href="#128387"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456355" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="456356" typeName="OutFlowPort"></role>
+				<object href="#128365"></object>
+				<port href="#128376"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456357" typeName="InFlowPort"></role>
+				<object href="#128367"></object>
+				<port href="#128381"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456358" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="456359" typeName="OutFlowPort"></role>
+				<object href="#128370"></object>
+				<port href="#128391"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456360" typeName="InFlowPort"></role>
+				<object href="#128367"></object>
+				<port href="#128389"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456361" typeName="Power">
+			</relationship>
+			<connection id="1">
+				<role oid="456362" typeName="OutPowerPort"></role>
+				<object href="#128420"></object>
+				<port href="#128449"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456363" typeName="InPowerPort"></role>
+				<object href="#128370"></object>
+				<port href="#128414"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456364" typeName="Power">
+			</relationship>
+			<connection id="1">
+				<role oid="456365" typeName="OutPowerPort"></role>
+				<object href="#128393"></object>
+				<port href="#128449"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456366" typeName="InPowerPort"></role>
+				<object href="#128370"></object>
+				<port href="#128414"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456367" typeName="Power">
+			</relationship>
+			<connection id="1">
+				<role oid="456368" typeName="OutPowerPort"></role>
+				<object href="#128367"></object>
+				<port href="#128409"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456369" typeName="InPowerPort"></role>
+				<object href="#128370"></object>
+				<port href="#128416"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456370" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="456371" typeName="OutFlowPort"></role>
+				<object href="#128366"></object>
+				<port href="#128403"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456372" typeName="InFlowPort"></role>
+				<object href="#128370"></object>
+				<port href="#128378"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456373" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="456374" typeName="OutFlowPort"></role>
+				<object href="#128365"></object>
+				<port href="#128374"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456375" typeName="InFlowPort"></role>
+				<object href="#128370"></object>
+				<port href="#128381"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456376" typeName="ClientServerInterface">
+			</relationship>
+			<connection id="1">
+				<role oid="456377" typeName="ClientPort"></role>
+				<object href="#128370"></object>
+				<port href="#128405"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456378" typeName="ServerPort"></role>
+				<object href="#128393"></object>
+				<port href="#128432"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456379" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="456380" typeName="OutFlowPort"></role>
+				<object href="#128366"></object>
+				<port href="#128383"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456381" typeName="InFlowPort"></role>
+				<object href="#128420"></object>
+				<port href="#128428"></port>
+			</connection>
+		</binding>
+		<binding>
+			<relationship oid="456382" typeName="Flow">
+			</relationship>
+			<connection id="1">
+				<role oid="456383" typeName="OutFlowPort"></role>
+				<object href="#128370"></object>
+				<port href="#128374"></port>
+			</connection>
+			<connection id="2">
+				<role oid="456384" typeName="InFlowPort"></role>
+				<object href="#128420"></object>
+				<port href="#128428"></port>
+			</connection>
+		</binding>
+	</graph>
+</gxl>
