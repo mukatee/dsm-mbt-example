@@ -6,6 +6,8 @@ import osmo.tester.model.data.ValueSet;
 import java.util.List;
 
 /**
+ * Represents the currently built transformation input model structure.
+ *
  * @author Teemu Kanstren.
  */
 public class ModelState {

@@ -1,4 +1,3 @@
-#set ($port_position = 1)
 <?xml version="1.0" encoding="UTF-8"?>
 <gxl xmlns="http://www.metacase.com/gxlGOPRR">
 	<graph id="_19_99637" typeName="DesignFunctionType">
@@ -43,19 +42,9 @@
 						<text>$dfp.dft.description</text>
 					</value>
 				</slot>
+#set ($port_position = 1)
 #foreach ($p in $dfp.inFlows.options)
 				<object id="$p.id" typeName="InFlowPort">
-					<slot name="Short name">
-						<value>
-							<string>$p.name</string>
-						</value>
-					</slot>
-				</object>
-$p.setPosition($port_position)
-#set( $port_position = $port_position + 1 )
-#end
-#foreach ($p in $dfp.outFlows.options)
-				<object id="$p.id" typeName="OutFlowPort">
 					<slot name="Short name">
 						<value>
 							<string>$p.name</string>
@@ -76,8 +65,8 @@ $p.setPosition($port_position)
 $p.setPosition($port_position)
 #set( $port_position = $port_position + 1 )
 #end
-#foreach ($p in $dfp.outPowers.options)
-				<object id="$p.id" typeName="OutPowerPort">
+#foreach ($p in $dfp.servers.options)
+				<object id="$p.id" typeName="ServerPort">
 					<slot name="Short name">
 						<value>
 							<string>$p.name</string>
@@ -87,6 +76,7 @@ $p.setPosition($port_position)
 $p.setPosition($port_position)
 #set( $port_position = $port_position + 1 )
 #end
+#set( $port_position = 1 )
 #foreach ($p in $dfp.clients.options)
 				<object id="$p.id" typeName="ClientPort">
 					<slot name="Short name">
@@ -98,8 +88,19 @@ $p.setPosition($port_position)
 $p.setPosition($port_position)
 #set( $port_position = $port_position + 1 )
 #end
-#foreach ($p in $dfp.servers.options)
-				<object id="$p.id" typeName="ServerPort">
+#foreach ($p in $dfp.outFlows.options)
+				<object id="$p.id" typeName="OutFlowPort">
+					<slot name="Short name">
+						<value>
+							<string>$p.name</string>
+						</value>
+					</slot>
+				</object>
+$p.setPosition($port_position)
+#set( $port_position = $port_position + 1 )
+#end
+#foreach ($p in $dfp.outPowers.options)
+				<object id="$p.id" typeName="OutPowerPort">
 					<slot name="Short name">
 						<value>
 							<string>$p.name</string>

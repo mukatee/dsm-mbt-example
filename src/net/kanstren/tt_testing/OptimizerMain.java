@@ -13,6 +13,8 @@ import osmo.tester.reporting.coverage.HTMLCoverageReporter;
 import java.util.List;
 
 /**
+ * For running the test generator with an optimizer that produces optimized test sets for the defined coverage criteria.
+ *
  * @author Teemu Kanstren.
  */
 public class OptimizerMain {

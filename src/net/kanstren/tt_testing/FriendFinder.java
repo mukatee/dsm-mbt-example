@@ -4,6 +4,9 @@ import osmo.common.Randomizer;
 import osmo.tester.model.data.ValueSet;
 
 /**
+ * Finds free pairs for different port types.
+ * Used for defining model guards (allow steps if suitable pairs exit) and for steps (to find ports to connect).
+ *
  * @author Teemu Kanstren.
  */
 public class FriendFinder {

@@ -11,6 +11,8 @@ import osmo.tester.generator.testsuite.TestSuite;
 import osmo.tester.reporting.coverage.HTMLCoverageReporter;
 
 /**
+ * For running the test generator with a random test generation algorithm.
+ *
  * @author Teemu Kanstren.
  */
 public class RandomMain {

@@ -10,6 +10,9 @@ import java.io.StringWriter;
 import java.util.*;
 
 /**
+ * Writes the different types of test scripts required.
+ * This includes the input model in MetaEdit+ format (.mxm file), the checker in Python format and the bat file to run these both.
+ *
  * @author Teemu Kanstren.
  */
 public class Scripter {
@@ -134,7 +137,7 @@ public class Scripter {
   private List<String> createLinesList(List<DFP> dfps) {
     List<String> lines = new ArrayList<>();
     for (DFP dfp : dfps) {
-      for (DFPPort port : dfp.getInFlows().getOptions()){
+      for (DFPPort port : dfp.getOutFlows().getOptions()){
         List<DFPPort> pairs = port.getPairs();
         for (DFPPort pair : pairs) {
           lines.add("\""+dfp.getName()+"."+port.getPosition()+"->"+pair.getDfp().getName()+"."+pair.getPosition()+"\"");
@@ -142,7 +145,7 @@ public class Scripter {
       }
     }
     for (DFP dfp : dfps) {
-      for (DFPPort port : dfp.getInPowers().getOptions()){
+      for (DFPPort port : dfp.getOutPowers().getOptions()){
         List<DFPPort> pairs = port.getPairs();
         for (DFPPort pair : pairs) {
           lines.add("\""+dfp.getName()+"."+port.getPosition()+"->"+pair.getDfp().getName()+"."+pair.getPosition()+"\"");

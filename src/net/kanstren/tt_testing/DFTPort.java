@@ -6,7 +6,7 @@ package net.kanstren.tt_testing;
 public class DFTPort {
   private final String name;
   private final int id;
-  private final int position;
+  private int position;
 
   public DFTPort(String name, int id, int position) {
     this.name = name;
@@ -20,6 +20,10 @@ public class DFTPort {
 
   public int getId() {
     return id;
+  }
+
+  public void setPosition(int position) {
+    this.position = position;
   }
 
   public int getPosition() {

@@ -9,10 +9,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Calculates coverage values for the produced input model.
+ * The references to "coverage category" refer to the term category-partitioning in test coverage.
+ * That is, we try to achieve coverage of the categories but do not necessarily care how it is done.
+ * For example, category value N for a DFP can be achieved by 3,4,5,6, or more DFP instances being present
+ * in one of the generated input models. But if we get one with 3 it is already covered and another with 4
+ * will not add any more coverage (with the N category).
+ *
  * @author Teemu Kanstren.
  */
 public class CoverageHelper {
+  /** From the model state we find out what elements were generated in the input. */
   private final ModelState state;
+  /** And this is where we store the coverage data. */
   private final TestSuite suite;
 
   public CoverageHelper(ModelState state, TestSuite suite) {
@@ -22,12 +31,16 @@ public class CoverageHelper {
 
   public void createCoverage(TestCase test) {
     TestCoverage coverage = test.getCoverage();
+    //we have DFP coverage category of 0,1,2 or N number of DFP in a single input model
     String dfpCat = value012NFor(state.dfpCount());
+    //store DFP category as achieve coverage value
     coverage.addVariableValue("DFP", dfpCat);
+    //for the DFT we have the same category as for DFP
     coverage.addVariableValue("DFT", value012NFor(state.dftCount()));
 
     List<DFT> dfts = state.getDFTs().getOptions();
     for (DFT dft : dfts) {
+      //here we have a coverage category for how many DFP instances are associated to a single DFT
       coverage.addVariableValue("DFT-DFP", value012NFor(dft.getChildren().size()));
     }
 
@@ -42,6 +55,12 @@ public class CoverageHelper {
     }
   }
 
+  /**
+   * Calculates DFP coverage category values from the viewpoint of a single DFP instance.
+   *
+   * @param dfp To calculate for.
+   * @param dfpCat The previously defined DFP coverage category (how many DFP are in the input model).
+   */
   private void singleDFPCoverage(DFP dfp, String dfpCat) {
     int dfp1InFlows = dfp.getInFlows().size();
     int dfp1OutFlows = dfp.getOutFlows().size();
@@ -60,14 +79,20 @@ public class CoverageHelper {
     TestCase test = suite.getCurrentTest();
     TestCoverage coverage = test.getCoverage();
 
+    //Coverage category for how many inflow ports a DFP has
     coverage.addVariableValue("DFP-InFlow", "" + dfpInFlowCat);
+    //Coverage category for how many outflow ports a DFP has
     coverage.addVariableValue("DFP-OutFlow", "" + dfpOutFlowCat);
+    //and so on for all the other port types..
     coverage.addVariableValue("DFP-InPower", "" + dfpInPowerCat);
     coverage.addVariableValue("DFP-OutPower", "" + dfpOutPowerCat);
     coverage.addVariableValue("DFP-Client", "" + dfpClientCat);
     coverage.addVariableValue("DFP-Server", "" + dfpServerCat);
 
+    //Coverage value that combines the target of having 0,1,2,N DFP in a model AND at the same time
+    //having 0,1,2,N inflow ports for a DFP in the same model
     coverage.addVariableValue("DFPs+InFlow", dfpCat + "+" + dfpInFlowCat);
+    //and the same for all other port types
     coverage.addVariableValue("DFPs+OutFlow", dfpCat + "+" + dfpOutFlowCat);
     coverage.addVariableValue("DFPs+InPower", dfpCat + "+" + dfpInPowerCat);
     coverage.addVariableValue("DFPs+OutPower", dfpCat + "+" + dfpOutPowerCat);
@@ -79,19 +104,39 @@ public class CoverageHelper {
     serverCoverage(dfp, dfpCat, dfpServerCat, dfpClientCat);
   }
 
+  /**
+   * Calculates line coverage values in relation to DFP instances in the model.
+   *
+   * @param dfp The DFP to process for coverage calculation.
+   * @param dfpCat Category of DFP instances in the model.
+   * @param dfpInFlowCat Category of inflow ports in the model.
+   * @param dfpOutFlowCat Category of outflow ports in the model.
+   */
   private void inFlowCoverage(DFP dfp, String dfpCat, String dfpInFlowCat, String dfpOutFlowCat) {
     TestCase test = suite.getCurrentTest();
     TestCoverage coverage = test.getCoverage();
 
     for (DFPPort p : dfp.getInFlows().getOptions()) {
       String cat = value01NFor(p.getPairs().size());
+      //Coverage category value for number of inflow-outflow connections in the input model
       coverage.addVariableValue("Flow-Lines", cat);
+      //Coverage category value combining number of DFP instances with number of inflow-outflow connections in the input model
       coverage.addVariableValue("DFPs+Flow-Lines", dfpCat+"+"+cat);
+      //combine DFP category, inflow port number category, and inflow-outflow connection count category as one coverage value
       coverage.addVariableValue("DFPs+InFlowPorts+Flow-Lines", dfpCat+"+"+dfpInFlowCat+"+"+cat);
+      //same for outflow ports
       coverage.addVariableValue("DFPs+OutFlowPorts+Flow-Lines", dfpCat+"+"+dfpOutFlowCat+"+"+cat);
     }
   }
 
+  /**
+   * Similar to the inFlowCoverage() method but for power ports.
+   *
+   * @param dfp The DFP to process for coverage calculation.
+   * @param dfpCat Category of DFP instances in the model.
+   * @param dfpInPowerCat Category of inpower port count in the model
+   * @param dfpOutPowerCat Category of outpower port count in the model.
+   */
   private void inPowerCoverage(DFP dfp, String dfpCat, String dfpInPowerCat, String dfpOutPowerCat) {
     TestCase test = suite.getCurrentTest();
     TestCoverage coverage = test.getCoverage();
@@ -105,6 +150,14 @@ public class CoverageHelper {
     }
   }
 
+  /**
+   * Similar to the inFlowCoverage() method but for client-server ports.
+   *
+   * @param dfp The DFP to process for coverage calculation.
+   * @param dfpCat Category of DFP instances in the model.
+   * @param dfpServerCat Category of server port count in the model.
+   * @param dfpClientCat Category of client port count in the model.
+   */
   private void serverCoverage(DFP dfp, String dfpCat, String dfpServerCat, String dfpClientCat) {
     TestCase test = suite.getCurrentTest();
     TestCoverage coverage = test.getCoverage();
@@ -118,6 +171,16 @@ public class CoverageHelper {
     }
   }
 
+  /**
+   * Creates coverage values for relations of two different DFP in the same model.
+   * For example, if there is an input model with two DFP's, where DFP1 has one inflow port and DFP2 has two inflow ports,
+   * This creates one coverage value for that.
+   * Another would be DFP1 with zero inflow ports and DFP2 with two inflow ports.
+   * This is done for all port types.
+   *
+   * @param dfp1 First part of the pair.
+   * @param dfp2 Second part of the pair.
+   */
   private void twoDFPCoverage(DFP dfp1, DFP dfp2) {
     int dfp1InFlows = dfp1.getInFlows().size();
     int dfp1OutFlows = dfp1.getOutFlows().size();
@@ -133,6 +196,7 @@ public class CoverageHelper {
     int dfp2Clients = dfp2.getClients().size();
     int dfp2Servers = dfp2.getServers().size();
 
+    //from here on we do all the port types and their combination for given DFP instances
     pair("InFlow", "InFlow", dfp1InFlows, dfp2InFlows);
     pair("InFlow", "OutFlow", dfp1InFlows, dfp2OutFlows);
     pair("InFlow", "InPower", dfp1InFlows, dfp2InPowers);
@@ -161,6 +225,16 @@ public class CoverageHelper {
     pair("Server", "Server", dfp1Servers, dfp2Servers);
   }
 
+  /**
+   * Creates a coverage identifier for two coverage elements.
+   * Sorts by name and creates a string representing these two.
+   * This is done to make sure same elements are not considered twice in different order as a different coverage value.
+   *
+   * @param name1 Name of first port type.
+   * @param name2 Name of second port type.
+   * @param value1 Coverage value for item matching name1.
+   * @param value2 Coverage value for item matching name2.
+   */
   private void pair(String name1, String name2, int value1, int value2) {
     TestCase test = suite.getCurrentTest();
     TestCoverage coverage = test.getCoverage();

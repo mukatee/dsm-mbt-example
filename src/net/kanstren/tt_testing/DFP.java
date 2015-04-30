@@ -3,18 +3,30 @@ package net.kanstren.tt_testing;
 import osmo.tester.model.data.ValueSet;
 
 /**
+ * Represents a DesignFunctionPrototype in the generated input models.
+ *
  * @author Teemu Kanstren.
  */
 public class DFP {
+  /** And id value used to create readable names. */
   private final int id;
+  /** Unique ID value across all elements, required by MetaEdit+. */
   private final int uid;
+  /** DFP description, if any. If null, it is not included in the input model. */
   private String description = null;
+  /** DesignFunctionType for this DFP. */
   private DFT dft = null;
+  /** InFlow ports generated for this DFP. */
   private ValueSet<DFPPort> inFlows = new ValueSet<>();
+  /** OutFlow ports generated for this DFP. */
   private ValueSet<DFPPort> outFlows = new ValueSet<>();
+  /** InPower ports generated for this DFP. */
   private ValueSet<DFPPort> inPowers = new ValueSet<>();
+  /** OutPower ports generated for this DFP. */
   private ValueSet<DFPPort> outPowers = new ValueSet<>();
+  /** Client ports generated for this DFP. */
   private ValueSet<DFPPort> clients = new ValueSet<>();
+  /** Server ports generated for this DFP. */
   private ValueSet<DFPPort> servers = new ValueSet<>();
 
   public DFP(int id, long seed) {
@@ -72,6 +84,12 @@ public class DFP {
     return dft;
   }
 
+  /**
+   * We always have to synchronize between DFT and DFP to make sure they have the same number of ports.
+   * We need separate port definitions since different DFP may have different connections.
+   *
+   * @param dft The type to set..
+   */
   public void setDFT(DFT dft) {
     this.dft = dft;
     for (DFTPort port : dft.getInFlows().getOptions()) {
@@ -106,16 +124,25 @@ public class DFP {
     connectPorts(clients, target.getServers());
   }
 
+  /**
+   * Finds a pair of free ports of the same type and connects when.
+   *
+   * @param sources The source ports where to find a free port.
+   * @param targets The target ports where to find a free port.
+   */
   public void connectPorts(ValueSet<DFPPort> sources, ValueSet<DFPPort> targets) {
     DFPPort source = null;
     DFPPort target = null;
+    //first we go through all the options and remove the ones that are not possible
     while (sources.available() > 0 && targets.available() > 0) {
       source = sources.reserve();
+      //we have a source port but do we have a possible target port for this source port?
       if (source.getPairs().containsAll(targets.getOptions())) {
         source = null;
         continue;
       }
 
+      //now we have a source port and there should be a possible target port, so lets find one
       for (DFPPort port : source.getPairs()) {
         if (targets.getOptions().contains(port)) {
           targets.reserve(port);
@@ -131,6 +158,7 @@ public class DFP {
     while (targets.reserved() > 0) {
       targets.free(targets.randomReserved());
     }
+    //well, if we failed to find a match, lets exit..
     if (source == null) return;
     source.addPair(target);
     target.addPair(source);

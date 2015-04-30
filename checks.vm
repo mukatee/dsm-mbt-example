@@ -7,10 +7,11 @@ import glob
 
 def check(value, error):
     if not value:
-        print(error)
+        print("ERROR:"+error)
 
 dfts = glob.glob("reports/DFT*.mdl")
 dft_count = len(dfts)
+print("DFT count: expected "+str($dft_count)+", found:"+str(dft_count))
 check(dft_count == $dft_count, "Number of DFT output should be $dft_count, was "+str(dft_count))
 
 dfp_inports = $inport_count_dict
@@ -29,6 +30,7 @@ name = None
 dfp_count = 0
 lines_actual = []
 line_count = 0
+in_line = False
 
 for line in content:
     l = line.strip()
@@ -69,9 +71,12 @@ for line in content:
         inports.append(l.split('"')[1])
     if l.startswith("port") and port_type == "out":
         outports.append(l.split('"')[1])
-    if l.startswith("Line {"):
+    if in_line and l.startswith("}"):
+        in_line = False
         if (line_count > 0):
             lines_actual.append(str(src_block)+"."+str(src_port)+"->"+str(dst_block)+"."+str(dst_port))
+    if l.startswith("Line {"):
+        in_line = True
         src_block = None
         dst_block = None
         src_port = None
@@ -90,4 +95,8 @@ check(dfp_count == $dfp_count, "Number of DFP should be $dfp_count, was "+str(df
 check(line_count == $line_count, "Number of lines expected $line_count, was "+str(line_count))
 for line in lines_expected:
     check(line in lines_actual, "Line not found:"+line)
+print("DFP count: expected "+str($dfp_count)+", was "+str(dfp_count))
+print("Line count: expected "+str($line_count)+", was "+str(line_count))
+print("lines expected:"+str(lines_expected))
+print("lines found:"+str(lines_actual))
 print("Checking finished. Any errors printed above.")

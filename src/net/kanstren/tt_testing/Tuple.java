@@ -1,6 +1,8 @@
 package net.kanstren.tt_testing;
 
 /**
+ * A fancy name for a pair..
+ *
  * @author Teemu Kanstren.
  */
 public class Tuple<T, K> {
